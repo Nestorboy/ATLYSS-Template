@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <!-- Mod unique identifier / GUID. Has to be unique. When changed, it will also update the Thunderstore manifest.json and MyPluginInfo.PLUGIN_GUID -->
+        <AssemblyName>TemplateMod</AssemblyName>
+
+        <!-- Mod display name. When changed, it will also update MyPluginInfo.PLUGIN_NAME. -->
+        <Product>Template Mod</Product>
+
+        <!-- Mod version. When changed, it will also update the Thunderstore manifest.json and MyPluginInfo.PLUGIN_VERSION. -->
+        <Version>1.0.0</Version>
+
+        <!-- It's generally good practice to prefix the root namespace with some company/user name to avoid collisions. -->
+        <RootNamespace>ExampleUser.TemplateMod</RootNamespace>
+    </PropertyGroup>
+
+    <!-- Other mod-related properties which are currently only used for the Thunderstore. -->
+    <PropertyGroup>
+        <ModURL>https://github.com/Nestorboy/ATLYSS-TemplateMod</ModURL>
+        <ModDescription>A template mod used as a base for your own mods.</ModDescription>
+    </PropertyGroup>
+
+    <!-- Other mod dependency strings on the Thunderstore. -->
+    <ItemGroup>
+        <ModDependencies Include="BepInEx-BepInExPack-5.4.2100"/>
+    </ItemGroup>
+
+    <!-- Package versions are specified in Packages.targets to keep them in sync between projects. -->
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Analyzers"/>
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild"/> <!-- Lets us make all members accessible without using reflection. -->
+        <PackageReference Include="BepInEx.Core"/>
+        <PackageReference Include="BepInEx.PluginInfoProps"/> <!-- Generates the MyPluginInfo class from the properties specified above. -->
+        <PackageReference Include="UnityEngine.Modules"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies"/>
+    </ItemGroup>
+
+    <!-- Here we include the managed game assemblies. -->
+    <ItemGroup>
+        <!-- The games classes are usually stored in Assembly-CSharp.dll. -->
+        <Reference Include="Assembly-CSharp" Publicize="true"> <!-- We make sure to publicize the game assembly using BepInEx.AssemblyPublicizer. -->
+            <HintPath>$(ATLYSS_MANAGED)\Assembly-CSharp.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+</Project>
