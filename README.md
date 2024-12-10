@@ -1,5 +1,5 @@
 # Template Mod
-Yet another template repository for making BepInEx mods for ATLYSS.
+Yet another template repository for making BepInEx mods for [ATLYSS](https://store.steampowered.com/app/2768430/ATLYSS/).
 
 ### Building
 1. Open [Directory.Build.props](Directory.Build.props) in a text editor.
