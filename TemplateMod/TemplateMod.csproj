@@ -41,7 +41,7 @@
     <!-- Here we include the managed game assemblies. -->
     <ItemGroup>
         <!-- The games classes are usually stored in Assembly-CSharp.dll. -->
-        <Reference Include="Assembly-CSharp" Publicize="true"> <!-- We make sure to publicize the game assembly using BepInEx.AssemblyPublicizer. -->
+        <Reference Include="Assembly-CSharp" Private="false" Publicize="true"> <!-- We make sure to publicize the game assembly using BepInEx.AssemblyPublicizer. -->
             <HintPath>$(ATLYSS_MANAGED)\Assembly-CSharp.dll</HintPath>
         </Reference>
     </ItemGroup>
